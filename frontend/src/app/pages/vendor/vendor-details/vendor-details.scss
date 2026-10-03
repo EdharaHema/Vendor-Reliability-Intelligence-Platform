@@ -1,0 +1,201 @@
+.vendor-details-container {
+  max-width: 1400px;
+  margin: auto;
+  padding: 24px;
+}
+
+/* ================= Header ================= */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  p {
+    margin-top: 8px;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+
+.header-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ================= Sections ================= */
+
+.section {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1976d2;
+    font-size: 22px;
+  }
+}
+
+/* ================= Details Grid ================= */
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.details-grid label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.details-grid p {
+  margin: 0;
+  font-size: 15px;
+  color: #333;
+  word-break: break-word;
+}
+
+.full-width {
+  grid-column: 1 / -1;
+}
+
+/* ================= Status ================= */
+
+.status {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status.active,
+.status.approved {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status.inactive {
+  background: #ececec;
+  color: #555;
+}
+
+.status.suspended {
+  background: #ffe5b4;
+  color: #b26a00;
+}
+
+.status.rejected {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* ================= Documents ================= */
+
+.document {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.document:last-child {
+  border-bottom: none;
+}
+
+.document-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.document-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ================= Information Cards ================= */
+
+.info-card {
+  margin-top: 25px;
+  padding: 24px;
+  background: #ffffff;
+  border-left: 6px solid #4caf50;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h2 {
+    margin-top: 0;
+    color: #2e7d32;
+  }
+
+  p {
+    color: #555;
+    line-height: 1.7;
+  }
+
+  ul {
+    margin-top: 15px;
+    padding-left: 22px;
+  }
+
+  li {
+    margin-bottom: 10px;
+  }
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 768px) {
+
+  .vendor-details-container {
+    padding: 18px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-buttons {
+    width: 100%;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .document {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}

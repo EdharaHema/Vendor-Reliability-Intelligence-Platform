@@ -1,0 +1,235 @@
+<div class="management-container">
+
+  <!-- ================= Page Header ================= -->
+
+  <div class="header">
+
+    <div>
+
+      <h1>Vendor Management</h1>
+
+      <p>
+
+        Manage vendor registration, approvals, contact information,
+        documents, and vendor lifecycle from a single dashboard.
+
+      </p>
+
+    </div>
+
+  </div>
+
+  <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+
+  <!-- ================= Dashboard Summary ================= -->
+
+  <div class="stats">
+
+    <mat-card class="stat-card total">
+
+      <mat-icon>groups</mat-icon>
+
+      <h2>{{ totalVendors }}</h2>
+
+      <p>Total Vendors</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card approved">
+
+      <mat-icon>verified</mat-icon>
+
+      <h2>{{ approved }}</h2>
+
+      <p>Approved Vendors</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card pending">
+
+      <mat-icon>schedule</mat-icon>
+
+      <h2>{{ pending }}</h2>
+
+      <p>Pending Vendors</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card active">
+
+      <mat-icon>check_circle</mat-icon>
+
+      <h2>{{ active }}</h2>
+
+      <p>Active Vendors</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card suspended">
+
+      <mat-icon>pause_circle</mat-icon>
+
+      <h2>{{ suspended }}</h2>
+
+      <p>Suspended Vendors</p>
+
+    </mat-card>
+
+    <mat-card class="stat-card rejected">
+
+      <mat-icon>cancel</mat-icon>
+
+      <h2>{{ rejected }}</h2>
+
+      <p>Rejected Vendors</p>
+
+    </mat-card>
+
+  </div>
+
+  <!-- ================= Dashboard Menu ================= -->
+
+  <div class="cards">
+
+    <!-- Vendor List -->
+
+    <mat-card class="menu-card">
+
+      <mat-icon>groups</mat-icon>
+
+      <h2>Vendor List</h2>
+
+      <p>
+
+        View all registered vendors, search vendor records,
+        filter vendors, and manage vendor information.
+
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="openVendorList()">
+
+        Open
+
+      </button>
+
+    </mat-card>
+
+    <!-- Add Vendor -->
+
+    <mat-card class="menu-card">
+
+      <mat-icon>person_add</mat-icon>
+
+      <h2>Add Vendor</h2>
+
+      <p>
+
+        Register new vendors, upload required documents,
+        and maintain complete company information.
+
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="addVendor()">
+
+        Open
+
+      </button>
+
+    </mat-card>
+
+    <!-- Vendor Approval -->
+
+    <mat-card class="menu-card">
+
+      <mat-icon>verified</mat-icon>
+
+      <h2>Vendor Approval</h2>
+
+      <p>
+
+        Review vendor registrations,
+        approve vendors,
+        or reject vendor requests.
+
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="approval()">
+
+        Open
+
+      </button>
+
+    </mat-card>
+
+    <!-- Vendor Documents -->
+
+    <mat-card class="menu-card">
+
+      <mat-icon>description</mat-icon>
+
+      <h2>Vendor Documents</h2>
+
+      <p>
+
+        View vendor documents including
+        GST Certificate,
+        PAN Card,
+        Registration Certificate,
+        ISO Certificates,
+        and supporting files.
+
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="documents()">
+
+        Open
+
+      </button>
+
+    </mat-card>
+
+    <!-- Vendor Details -->
+
+    <mat-card class="menu-card">
+
+      <mat-icon>badge</mat-icon>
+
+      <h2>Vendor Details</h2>
+
+      <p>
+
+        View complete vendor profile,
+        contact information,
+        approval status,
+        audit information,
+        and uploaded documents.
+
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="details()">
+
+        Open
+
+      </button>
+
+    </mat-card>
+
+  </div>
+    
+
+</div>

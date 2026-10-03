@@ -1,0 +1,533 @@
+<div class="vendor-container">
+
+  <!-- ================= Page Header ================= -->
+
+  <div class="page-header">
+
+    <div>
+
+      <h1>Vendor Management</h1>
+
+      <p>
+
+        Manage registered vendors, monitor approval status,
+        search vendors, and maintain vendor information.
+
+      </p>
+
+    </div>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      (click)="addVendor()">
+
+      <mat-icon>
+
+        add
+
+      </mat-icon>
+
+      Add Vendor
+
+    </button>
+
+  </div>
+
+  <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+
+  <!-- ================= Dashboard Summary ================= -->
+
+  <div class="stats-container">
+
+    <div class="stat-card">
+
+      <h2>{{ totalVendors }}</h2>
+
+      <p>Total Vendors</p>
+
+    </div>
+
+    <div class="stat-card approved">
+
+      <h2>{{ approvedVendors }}</h2>
+
+      <p>Approved Vendors</p>
+
+    </div>
+
+    <div class="stat-card pending">
+
+      <h2>{{ pendingVendors }}</h2>
+
+      <p>Pending Vendors</p>
+
+    </div>
+
+    <div class="stat-card active">
+
+      <h2>{{ activeVendors }}</h2>
+
+      <p>Active Vendors</p>
+
+    </div>
+
+    <div class="stat-card suspended">
+
+      <h2>{{ suspendedVendors }}</h2>
+
+      <p>Suspended Vendors</p>
+
+    </div>
+
+    <div class="stat-card rejected">
+
+      <h2>{{ rejectedVendors }}</h2>
+
+      <p>Rejected Vendors</p>
+
+    </div>
+
+  </div>
+
+  <!-- ================= Search & Filters ================= -->
+
+  <div class="filters">
+
+    <!-- Search -->
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>
+
+        Search Vendor
+
+      </mat-label>
+
+      <input
+        matInput
+        [(ngModel)]="searchText"
+        (input)="onSearchChange()"
+        placeholder="Vendor ID / Company / Contact / Email / GST Number">
+
+    </mat-form-field>
+
+    <!-- Vendor Category -->
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>
+
+        Vendor Category
+
+      </mat-label>
+
+      <mat-select
+        [(ngModel)]="selectedCategory"
+        (selectionChange)="onFilterChange()">
+
+        <mat-option value="">
+
+          All Categories
+
+        </mat-option>
+
+        <mat-option value="Raw Material Suppliers">
+
+          Raw Material Suppliers
+
+        </mat-option>
+
+        <mat-option value="Equipment Vendors">
+
+          Equipment Vendors
+
+        </mat-option>
+
+        <mat-option value="IT Vendors">
+
+          IT Vendors
+
+        </mat-option>
+
+        <mat-option value="Service Providers">
+
+          Service Providers
+
+        </mat-option>
+
+        <mat-option value="Logistics Partners">
+
+          Logistics Partners
+
+        </mat-option>
+
+        <mat-option value="Maintenance Vendors">
+
+          Maintenance Vendors
+
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <!-- Vendor Status -->
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>
+
+        Vendor Status
+
+      </mat-label>
+
+      <mat-select
+        [(ngModel)]="selectedStatus"
+        (selectionChange)="onFilterChange()">
+
+        <mat-option value="">
+
+          All Status
+
+        </mat-option>
+
+        <mat-option value="Active">
+
+          Active
+
+        </mat-option>
+
+        <mat-option value="Pending">
+
+          Pending
+
+        </mat-option>
+
+        <mat-option value="Inactive">
+
+          Inactive
+
+        </mat-option>
+
+        <mat-option value="Suspended">
+
+          Suspended
+
+        </mat-option>
+
+        <mat-option value="Rejected">
+
+          Rejected
+
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+    <!-- Approval Status -->
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>
+
+        Approval Status
+
+      </mat-label>
+
+      <mat-select
+        [(ngModel)]="selectedApprovalStatus"
+        (selectionChange)="onFilterChange()">
+
+        <mat-option value="">
+
+          All Approval Status
+
+        </mat-option>
+
+        <mat-option value="Approved">
+
+          Approved
+
+        </mat-option>
+
+        <mat-option value="Pending">
+
+          Pending
+
+        </mat-option>
+
+        <mat-option value="Rejected">
+
+          Rejected
+
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+  </div>
+
+  <!-- ================= Vendor Table ================= -->
+
+  <div class="table-container">
+
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      matSort>
+            <!-- Vendor ID -->
+
+      <ng-container matColumnDef="vendorId">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Vendor ID
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          {{ vendor.vendorId }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Company Name -->
+
+      <ng-container matColumnDef="companyName">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Company Name
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          {{ vendor.companyName }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Vendor Category -->
+
+      <ng-container matColumnDef="category">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Vendor Category
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          {{ vendor.category }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Contact Person -->
+
+      <ng-container matColumnDef="contactPerson">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Contact Person
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          {{ vendor.contactPerson }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Email -->
+
+      <ng-container matColumnDef="email">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Email Address
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          {{ vendor.email }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Phone -->
+
+      <ng-container matColumnDef="phone">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Phone Number
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          {{ vendor.phone }}
+
+        </td>
+
+      </ng-container>
+
+      <!-- Vendor Status -->
+
+      <ng-container matColumnDef="status">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Vendor Status
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          <span
+            class="status-badge"
+            [ngClass]="vendor.vendorStatus.toLowerCase()">
+
+            {{ vendor.vendorStatus }}
+
+          </span>
+
+        </td>
+
+      </ng-container>
+
+      <!-- Approval Status -->
+
+      <ng-container matColumnDef="approvalStatus">
+
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+
+          Approval Status
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          <span
+            class="approval-badge"
+            [ngClass]="vendor.approvalStatus.toLowerCase()">
+
+            {{ vendor.approvalStatus }}
+
+          </span>
+
+        </td>
+
+      </ng-container>
+
+      <!-- Actions -->
+
+      <ng-container matColumnDef="actions">
+
+        <th mat-header-cell *matHeaderCellDef>
+
+          Actions
+
+        </th>
+
+        <td mat-cell *matCellDef="let vendor">
+
+          <button
+            mat-icon-button
+            color="primary"
+            matTooltip="View Vendor"
+            (click)="viewVendor(vendor.id)">
+
+            <mat-icon>
+
+              visibility
+
+            </mat-icon>
+
+          </button>
+
+          <button
+            mat-icon-button
+            color="accent"
+            matTooltip="Edit Vendor"
+            (click)="editVendor(vendor.id)">
+
+            <mat-icon>
+
+              edit
+
+            </mat-icon>
+
+          </button>
+
+          <button
+            mat-icon-button
+            color="warn"
+            matTooltip="Delete Vendor"
+            (click)="deleteVendor(vendor.id)">
+
+            <mat-icon>
+
+              delete
+
+            </mat-icon>
+
+          </button>
+
+        </td>
+
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="displayedColumns">
+
+      </tr>
+
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns">
+
+      </tr>
+
+      <tr
+        class="mat-row"
+        *matNoDataRow>
+
+        <td
+          class="mat-cell"
+          colspan="9">
+
+          No vendors found matching the selected filters.
+
+        </td>
+
+      </tr>
+
+    </table>
+
+    <mat-paginator
+      [pageSize]="5"
+      [pageSizeOptions]="[5,10,20]"
+      showFirstLastButtons>
+
+    </mat-paginator>
+
+  </div>
+
+</div>
